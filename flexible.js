@@ -86,8 +86,7 @@
     }
 
     function refreshRem(){
-        var width = docEl.getBoundingClientRect().width; // .width属性 IE9+
-
+        var width = docEl.getBoundingClientRect().width; // .width属性 IE9+ meta[name=viewport].initial-scale值的改变会改变此宽度
         if (width / dpr > 540) {
             width = 540 * dpr;
         }
