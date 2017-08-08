@@ -3,12 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0">  -->
-    <meta name="flexible" content="maximum-dpr=23" />
+    <meta name="flexible" content="maximum-dpr=1" />
     <script src="./flexible.js"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>设备像素比: <span id="dpr"></span></h1>
+    <h1>data-dpr：<span id="dataDpr"></span></h1>
+    <h1>meta[name=viewport]：<span id="viewport"></span></h1>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(e) {
+            var doc = document;
+            var get = doc.getElementById;
+            var dataDpr = get('dataDpr');
+            var viewport = get('viewport');
+            console.log(get);
+            var dpr = get('dpr');
+            dpr.innerHTML = doc.devicePixelRatio;
+            dataDpr.innerHTML = doc.documentElement.getAttribute('data-dpr');
+            viewport.innerHTML = doc.querySelector('meta[name="viewport"]').getAttribute('content');
+        }, false);
+    </script>
 </body>
 </html>
