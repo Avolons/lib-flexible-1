@@ -2,28 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0">  -->
-    <meta name="flexible" content="maximum-dpr=1" />
-    <script src="./flexible.js"></script>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1   , user-scalable=0;"/>      
+      <!-- <meta name="flexible" content="maximum-dpr=1" />   -->
+       <!-- <script src="./flexible.js"></script>    -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
     <title>Document</title>
+    <style>
+         .d1{
+            height: 10px;
+            width: 900px;
+            background: red;
+        }
+        .d2{
+            height: 20px;
+            width: 350px;
+            background: #000;
+        } 
+    </style>
 </head>
 <body>
-    <h1>设备像素比: <span id="dpr"></span></h1>
+    <div class="d1"></div>
+       <div class="d2"></div>
+     <p id="info"></h1> 
+     <!-- <h1>设备像素比: <span id="dpr"></span></h1>
     <h1>data-dpr：<span id="dataDpr"></span></h1>
-    <h1>meta[name=viewport]：<span id="viewport"></span></h1>
+    <h1>meta[name=viewport]：<span id="viewport"></span></h1>  -->
     <script>
-        document.addEventListener('DOMContentLoaded', function(e) {
-            var doc = document;
-            var get = doc.getElementById;
-            var dataDpr = get('dataDpr');
-            var viewport = get('viewport');
-            console.log(get);
-            var dpr = get('dpr');
-            dpr.innerHTML = doc.devicePixelRatio;
-            dataDpr.innerHTML = doc.documentElement.getAttribute('data-dpr');
-            viewport.innerHTML = doc.querySelector('meta[name="viewport"]').getAttribute('content');
-        }, false);
+        var info = document.getElementById('info');
+        var html = document.documentElement;
+        var meta = document.querySelector('meta[name="viewport"]');
+        meta = meta && meta.getAttribute('content');
+        info.innerHTML = `${window.getComputedStyle(html, null).width};${html.getBoundingClientRect().width};
+        dpr: ${window.devicePixelRatio};meta: ${ meta }`
+        // document.addEventListener('DOMContentLoaded', function(e) {
+        //     var doc = document;
+        //     var get = function(selector) {
+        //         return doc.getElementById(selector);
+        //     };
+        //     var dataDpr = get('dataDpr');
+        //     var viewport = get('viewport');
+        //     var dpr = get('dpr');
+        //     dpr.innerHTML = window.devicePixelRatio;
+        //     dataDpr.innerHTML = doc.documentElement.getAttribute('data-dpr');
+        //     viewport.innerHTML = doc.querySelector('meta[name="viewport"]').getAttribute('content');
+        // }, false);
     </script>
 </body>
 </html>

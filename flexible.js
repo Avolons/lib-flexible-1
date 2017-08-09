@@ -90,23 +90,28 @@
         if (width / dpr > 540) {
             width = 540 * dpr;
         }
+        // 将屏幕分成10份
         var rem = width / 10;
         docEl.style.fontSize = rem + 'px';
         flexible.rem = win.rem = rem;
     }
 
+    // window 触发 resize，重新计算rem, 但是dpr不会改变
     win.addEventListener('resize', function() {
         clearTimeout(tid);
         tid = setTimeout(refreshRem, 300);
     }, false);
+    // IE11+
     win.addEventListener('pageshow', function(e) {
-        if (e.persisted) {
+        // e.persisted === true，即页面从浏览器的缓存中读取
+        if (e.persisted) { 
             clearTimeout(tid);
             tid = setTimeout(refreshRem, 300);
         }
     }, false);
 
     // 给body设置font-size
+    // document.readyState === complete 发生在 DOMContentLoaded 之前
     if (doc.readyState === 'complete') {
         doc.body.style.fontSize = 12 * dpr + 'px';
     } else {
@@ -114,7 +119,6 @@
             doc.body.style.fontSize = 12 * dpr + 'px';
         }, false);
     }
-    
 
     refreshRem();
 
