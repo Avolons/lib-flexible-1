@@ -30,7 +30,7 @@
             // 根据meta:flexible 设置的initial设置 dpr 和 scale
             if (initialDpr) {
                 dpr = parseFloat(initialDpr[1]);
-                scale = parseFloat((1 / dpr).toFixed(2));    
+                scale = parseFloat((1 / dpr).toFixed(2));
                 console.log('meta[name="viewport"].flexible-dpr设置缩放比，dpr：', dpr, ';scale:', scale);
             }
 
@@ -38,7 +38,7 @@
             if (maximumDpr) {
                 // 在真实设备像素比 和 maximumDpr 中选择小的
                 dpr = parseFloat(maximumDpr[1]) < devicePixelRatio ? maximumDpr[1] : devicePixelRatio;
-                scale = parseFloat((1 / dpr).toFixed(2));   
+                scale = parseFloat((1 / dpr).toFixed(2));
                 console.log('meta[name="viewport"].maximum-dpr设置缩放比，dpr：', dpr, ';scale:', scale);
             }
         }
@@ -50,9 +50,9 @@
         var isIPhone = win.navigator.appVersion.match(/iphone/gi);
         if (isIPhone) {
             // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
-            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
+            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
                 dpr = 3;
-            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
+            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
                 dpr = 2;
             } else {
                 dpr = 1;
@@ -85,7 +85,7 @@
         }
     }
 
-    function refreshRem(){
+    function refreshRem() {
         var width = docEl.getBoundingClientRect().width; // .width属性 IE9+ meta[name=viewport].initial-scale值的改变会改变此宽度
         if (width / dpr > 540) {
             width = 540 * dpr;
@@ -104,7 +104,7 @@
     // IE11+
     win.addEventListener('pageshow', function(e) {
         // e.persisted === true，即页面从浏览器的缓存中读取
-        if (e.persisted) { 
+        if (e.persisted) {
             clearTimeout(tid);
             tid = setTimeout(refreshRem, 300);
         }
